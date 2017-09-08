@@ -326,9 +326,7 @@ sap.ui.define([
 		fSaveCopyTrans: function() {
 			var oView = this.getView();
 			var oTable = oView.byId("Trans_Table");
-			var aIndex = oTable.getSelectedIndex();
-			// var contexts = oTable.getContextByIndex(aIndex);
-			// var set = contexts.sPath;
+			var aIndex = oTable.getSelectedIndex();			
 			/*Create operation*/
 			var oModel = this.getView().getModel();
 			var oEntry = {};
