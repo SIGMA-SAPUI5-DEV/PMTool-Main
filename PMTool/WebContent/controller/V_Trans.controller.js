@@ -5,8 +5,9 @@ sap.ui.define([
 	'sap/ui/core/util/Export',
 	'sap/ui/core/util/ExportTypeCSV',
 	"sap/ui/core/routing/History",
-	"sap/m/MessageToast"
-], function(jQuery, MessageBox, Controller, Export, ExportTypeCSV, History, MessageToast) {
+	"sap/m/MessageToast",
+	"sap/ui/core/ValueState"	
+], function(jQuery, MessageBox, Controller, Export, ExportTypeCSV, History, MessageToast, ValueState) {
 	"use strict";
 	var Objnr_Edit;
 	var Ernam_Edit;
@@ -138,6 +139,12 @@ sap.ui.define([
 			var oView = this.getView();
 			var oTable = oView.byId("Trans_Table");
 			var aIndex = oTable.getSelectedIndex();
+			
+			if (aIndex < 0) {
+				MessageToast.show("Please select one record");
+	            }
+			else {
+			
 			var oDialog = oView.byId("idTransDialogChange");
 			// create dialog lazily
 			if (!oDialog) {
@@ -195,9 +202,23 @@ sap.ui.define([
 			// oView.byId("inErdat").setValue(sErdat);
 			// oView.byId("inChnam").setValue(sChnam);
 			// oView.byId("inChdat").setValue(sChdat);
+			}
 		},
 		
 		onTransDialogChange : function () {
+			this.getView().byId("vTeam").setValueState(sap.ui.core.ValueState.None);
+			this.getView().byId("vTeam").destroyTooltip();
+			this.getView().byId("vchangeProjectId").setValueState(sap.ui.core.ValueState.None);
+			this.getView().byId("vchangeProjectId").destroyTooltip();
+			this.getView().byId("inTicket").setValueState(sap.ui.core.ValueState.None);
+			this.getView().byId("inTicket").destroyTooltip();
+			this.getView().byId("inSeqnr").setValueState(sap.ui.core.ValueState.None);
+			this.getView().byId("inSeqnr").destroyTooltip();
+			this.getView().byId("inLand1").setValueState(sap.ui.core.ValueState.None);
+			this.getView().byId("inLand1").destroyTooltip();
+			this.getView().byId("inTrkorr").setValueState(sap.ui.core.ValueState.None);
+			this.getView().byId("inTrkorr").destroyTooltip();
+			
 			this.getView().byId("idTransDialogChange").close();
 			// this.rebindTable();
 		},		
@@ -206,6 +227,10 @@ sap.ui.define([
 			var oView = this.getView();
 			var oTable = oView.byId("Trans_Table");
 		    aIndex = oTable.getSelectedIndex();
+		    if (aIndex < 0) {
+				MessageToast.show("Please select one record");
+	            }
+			else {
 			var oDialog = oView.byId("idTransDialogCopy");
 			// create dialog lazily
 			if (!oDialog) {
@@ -253,9 +278,24 @@ sap.ui.define([
 			// oView.byId("inErdat").setValue(sErdat);
 			// oView.byId("inChnam").setValue(sChnam);
 			// oView.byId("inChdat").setValue(sChdat);
+			}
 		},		
 		
 		onTransDialogCopy : function () {
+			
+			this.getView().byId("cpTeam").setValueState(sap.ui.core.ValueState.None);
+			this.getView().byId("cpTeam").destroyTooltip();
+			this.getView().byId("cpProject").setValueState(sap.ui.core.ValueState.None);
+			this.getView().byId("cpProject").destroyTooltip();
+			this.getView().byId("cpTicket").setValueState(sap.ui.core.ValueState.None);
+			this.getView().byId("cpTicket").destroyTooltip();
+			this.getView().byId("cpSeqnr").setValueState(sap.ui.core.ValueState.None);
+			this.getView().byId("cpSeqnr").destroyTooltip();
+			this.getView().byId("cpLand1").setValueState(sap.ui.core.ValueState.None);
+			this.getView().byId("cpLand1").destroyTooltip();
+			this.getView().byId("cpTrkorr").setValueState(sap.ui.core.ValueState.None);
+			this.getView().byId("cpTrkorr").destroyTooltip();
+			
 			this.getView().byId("idTransDialogCopy").close();
 			// this.rebindTable();
 		},
@@ -264,6 +304,10 @@ sap.ui.define([
             var oView = this.getView();
             var oTable = oView.byId("Trans_Table");
 			aIndex_Delete = oTable.getSelectedIndex();
+			if (aIndex_Delete < 0) {
+				MessageToast.show("Please select one record");
+	            }
+			else {
 			var oDialog = oView.byId("idTransDialogDelete");
 			// create dialog lazily
 			if (!oDialog) {
@@ -273,6 +317,7 @@ sap.ui.define([
 				oView.addDependent(oDialog);
 			}
 			oDialog.open();
+			}
 		},	
 		
 		onTransDialogDelete : function () {
@@ -281,6 +326,7 @@ sap.ui.define([
 		},		
 		
 		fSaveChangeTrans: function() {
+			var iError = 0;
 			var oView = this.getView();
 			var oTable = oView.byId("Trans_Table");
 			var aIndex = oTable.getSelectedIndex();
@@ -309,24 +355,93 @@ sap.ui.define([
 			oEntry.Chnam = Chnam_Edit;
 			oEntry.Chdat = Chdat_Edit;
 			
+			 if( oEntry.Team === null || oEntry.Team ==="" ){ 
+					this.getView().byId("vTeam").setValueState(sap.ui.core.ValueState.Error);
+					this.getView().byId("vTeam").setTooltip("Pls select valid Team");
+					iError++;
+				}
+				else{
+						this.getView().byId("vTeam").setValueState(sap.ui.core.ValueState.None);
+						this.getView().byId("vTeam").destroyTooltip();
+				}		
+			 
+			 if( oEntry.Project === null || oEntry.Project ==="" || oEntry.Project < 1 ){ 
+					this.getView().byId("vchangeProjectId").setValueState(sap.ui.core.ValueState.Error);
+					this.getView().byId("vchangeProjectId").setTooltip("Pls select valid Project");
+					iError++;
+				}
+				else{
+						this.getView().byId("vchangeProjectId").setValueState(sap.ui.core.ValueState.None);
+						this.getView().byId("vchangeProjectId").destroyTooltip();
+				}
+			 
+			 if( oEntry.Ticket === null || oEntry.Ticket ==="" ){ 
+					this.getView().byId("inTicket").setValueState(sap.ui.core.ValueState.Error);
+					this.getView().byId("inTicket").setTooltip("Pls enter valid Ticket Number");
+					iError++;
+				}
+				else{
+						this.getView().byId("inTicket").setValueState(sap.ui.core.ValueState.None);
+						this.getView().byId("inTicket").destroyTooltip();
+				}
+			 
+			 if( oEntry.Seqnr === null || oEntry.Seqnr ==="" || oEntry.Seqnr < 1 ){ 
+					this.getView().byId("inSeqnr").setValueState(sap.ui.core.ValueState.Error);
+					this.getView().byId("inSeqnr").setTooltip("Pls enter valid Sequence Number");
+					iError++;
+				}
+				else{
+						this.getView().byId("inSeqnr").setValueState(sap.ui.core.ValueState.None);
+						this.getView().byId("inSeqnr").destroyTooltip();
+				}
+			 
+			 if( oEntry.Land1 === null || oEntry.Land1 ==="" ){ 
+					this.getView().byId("inLand1").setValueState(sap.ui.core.ValueState.Error);
+					this.getView().byId("inLand1").setTooltip("Pls enter valid Country");
+					iError++;
+				}
+				else{
+						this.getView().byId("inLand1").setValueState(sap.ui.core.ValueState.None);
+						this.getView().byId("inLand1").destroyTooltip();
+				}
+			
+			 if( oEntry.Trkorr === null || oEntry.Trkorr ==="" ){ 
+					this.getView().byId("inTrkorr").setValueState(sap.ui.core.ValueState.Error);
+					this.getView().byId("inTrkorr").setTooltip("Pls enter valid Transport Request");
+					iError++;
+				}
+				else{
+						this.getView().byId("inTrkorr").setValueState(sap.ui.core.ValueState.None);
+						this.getView().byId("inTrkorr").destroyTooltip();
+				}
+			 
+				if (iError > 0){ 
+					return;
+				}
+			
 			oModel.update(set, oEntry, {
 				method: "PUT",
 				success: function(data) {
-					MessageToast.show("Record has been updated");
+					MessageBox.success("Record has been updated");
 				},
 				error: function(e) {
-					MessageToast.show("Error in save");
+					MessageBox.error("Error in save");
 				}
-			});
+			});						
+			
 			this.getView().byId("idTransDialogChange").close();
 			// this.rebindTable();
 
 		},
 		
 		fSaveCopyTrans: function() {
+			
+			var iError = 0;
 			var oView = this.getView();
 			var oTable = oView.byId("Trans_Table");
-			var aIndex = oTable.getSelectedIndex();			
+			var aIndex = oTable.getSelectedIndex();
+			// var contexts = oTable.getContextByIndex(aIndex);
+			// var set = contexts.sPath;
 			/*Create operation*/
 			var oModel = this.getView().getModel();
 			var oEntry = {};
@@ -349,14 +464,78 @@ sap.ui.define([
 			// oEntry.Erdat = Erdat_Edit;
 			// oEntry.Chnam = Chnam_Edit;
 			// oEntry.Chdat = Chdat_Edit;
+
+			 if( oEntry.Team === null || oEntry.Team ==="" ){ 
+					this.getView().byId("cpTeam").setValueState(sap.ui.core.ValueState.Error);
+					this.getView().byId("cpTeam").setTooltip("Pls select valid Team");
+					iError++;
+				}
+				else{
+						this.getView().byId("cpTeam").setValueState(sap.ui.core.ValueState.None);
+						this.getView().byId("cpTeam").destroyTooltip();
+				}		
+			 
+			 if( oEntry.Project === null || oEntry.Project ==="" || oEntry.Project < 1 ){ 
+					this.getView().byId("cpProject").setValueState(sap.ui.core.ValueState.Error);
+					this.getView().byId("cpProject").setTooltip("Pls select valid Project");
+					iError++;
+				}
+				else{
+						this.getView().byId("cpProject").setValueState(sap.ui.core.ValueState.None);
+						this.getView().byId("cpProject").destroyTooltip();
+				}
+			 
+			 if( oEntry.Ticket === null || oEntry.Ticket ==="" ){ 
+					this.getView().byId("cpTicket").setValueState(sap.ui.core.ValueState.Error);
+					this.getView().byId("cpTicket").setTooltip("Pls enter valid Ticket Number");
+					iError++;
+				}
+				else{
+						this.getView().byId("cpTicket").setValueState(sap.ui.core.ValueState.None);
+						this.getView().byId("cpTicket").destroyTooltip();
+				}
+			 
+			 if( oEntry.Seqnr === null || oEntry.Seqnr ==="" || oEntry.Seqnr < 1 ){ 
+					this.getView().byId("cpSeqnr").setValueState(sap.ui.core.ValueState.Error);
+					this.getView().byId("cpSeqnr").setTooltip("Pls enter valid Sequence Number");
+					iError++;
+				}
+				else{
+						this.getView().byId("cpSeqnr").setValueState(sap.ui.core.ValueState.None);
+						this.getView().byId("cpSeqnr").destroyTooltip();
+				}
+			 
+			 if( oEntry.Land1 === null || oEntry.Land1 ==="" ){ 
+					this.getView().byId("cpLand1").setValueState(sap.ui.core.ValueState.Error);
+					this.getView().byId("cpLand1").setTooltip("Pls enter valid Country");
+					iError++;
+				}
+				else{
+						this.getView().byId("cpLand1").setValueState(sap.ui.core.ValueState.None);
+						this.getView().byId("cpLand1").destroyTooltip();
+				}
 			
+			 if( oEntry.Trkorr === null || oEntry.Trkorr ==="" ){ 
+					this.getView().byId("cpTrkorr").setValueState(sap.ui.core.ValueState.Error);
+					this.getView().byId("cpTrkorr").setTooltip("Pls enter valid Transport Request");
+					iError++;
+				}
+				else{
+						this.getView().byId("cpTrkorr").setValueState(sap.ui.core.ValueState.None);
+						this.getView().byId("cpTrkorr").destroyTooltip();
+				}
+			 
+				if (iError > 0){ 
+					return;
+				}
+			 
 			oModel.create("/TransTrackerSet", oEntry, {
 				method: "POST",
 				success: function(data) {
-					MessageToast.show("Record has been Created");
+					MessageBox.success("Record has been Created");
 				},
 				error: function(e) {
-					MessageToast.show("Error in save");
+					MessageBox.error("Error in save");
 				}
 			});
 			this.getView().byId("idTransDialogCopy").close();
@@ -375,10 +554,10 @@ sap.ui.define([
 			oModel.remove(set, {
 					method: "DELETE",
 					success: function(data) {
-						MessageToast.show("Record has been deleted");
+						MessageBox.success("Record has been deleted");
 					},
 					error: function(e) {
-						MessageToast.show("Error while deleting the record");
+						MessageBox.error("Error while deleting the record");
 					}
 				});
 				this.getView().byId("idTransDialogDelete").close();
@@ -616,16 +795,17 @@ sap.ui.define([
 					template: {
 						content: "{Comments}"
 					}
-				}, {
-					name: "Deletion indicator",
-					template: {
-						content: "{Delflg}"
-					}
-				}, {
-					name: "Created By",
-					template: {
-						content: "{Ernam}"
-					}
+				}
+			//	}, {
+	//				name: "Deletion indicator",
+		//			template: {
+			//			content: "{Delflg}"
+				//	}
+			//	}, {
+				//	name: "Created By",
+				//	template: {
+				//		content: "{Ernam}"
+				//	}
 					// }, {
 					// 	name: "Assigned By",
 					// 	template: {
@@ -676,7 +856,7 @@ sap.ui.define([
 					// 	template: {
 					// 		content: "{Zdeveloper}"
 					// 	}
-				}]
+				]
 			});
 			// // download exported file
 			oExport.saveFile().catch(function(oError) {

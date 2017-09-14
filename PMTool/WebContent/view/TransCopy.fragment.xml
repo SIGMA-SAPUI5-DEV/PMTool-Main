@@ -13,28 +13,29 @@
 			<f:SimpleForm>
 				<Label text = "Transport List" />
 				<Input id = "cpTranList"/>
-				<!--<Label text = "Team" />-->
+				<!--<Label text = "Team" required="true"/>-->
 				<!--<Input id = "cpTeam"/>-->
-				<Label text="Team"/>
+				<Label text="Team" required="true"/>
 				      <ComboBox id="cpTeam" width="5cm" showSecondaryValues="true" items="{path: 'jData>/team/'}">
                                <core:Item key="{jData>key}" text="{jData>text}"/>
                        </ComboBox>
-				            <Label text="Project"/>
-								<ComboBox id="cpProject" width="7cm" showSecondaryValues="true" items="{ path: '/ProjMasterSet'}">
+				
+				<Label text="Project" required="true"/>
+						<ComboBox id="cpProject" width="7cm" showSecondaryValues="true" items="{ path: '/ProjMasterSet'}">
                                  <core:Item key="{ZprojId}" text="{ZprDesc}"/>
-                                 </ComboBox>
+                        </ComboBox>
                                  
-				<!--<Label text = "Project" />-->
+				<!--<Label text = "Project" required="true" />-->
 				<!--<Input id = "cpProject"/>-->
-				<Label text = "Ticket" />
+				<Label text = "Country" required="true"/>
+				<Input id = "cpLand1"/>
+				<Label text = "Ticket" required="true" />
 				<Input id = "cpTicket"/>
 				<Label text = "Specification Name" />
 				<Input id = "cpFolder"/>
-				<Label text = "Sequence No" />
+				<Label text = "Sequence No" required="true" />
 				<Input id = "cpSeqnr"/>
-				<Label text = "Country" />
-				<Input id = "cpLand1"/>
-				<Label text = "Transport Request" />
+				<Label text = "Transport Request" required="true"/>
 				<Input id = "cpTrkorr"/>
 				<Label text = "Prev. Transport Request" />
 				<Input id = "cpTrkorrPrev"/>

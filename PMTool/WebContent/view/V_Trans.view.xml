@@ -63,6 +63,13 @@
 						</table:template>
 					</table:Column>					
 					
+					<table:Column width="11rem">
+						<Label text="Country"/>
+						<table:template>
+							<Text id = "id7" text="{Land1}"/>
+						</table:template>
+					</table:Column>					
+					
 				<table:Column width="20rem">
 						<Label text="Ticket Number"/>
 						<table:template>
@@ -82,14 +89,7 @@
 						<table:template>
 							<Text id = "id6" text="{Seqnr}"/>
 						</table:template>
-					</table:Column>
-
-				<table:Column width="11rem">
-						<Label text="Country"/>
-						<table:template>
-							<Text id = "id7" text="{Land1}"/>
-						</table:template>
-					</table:Column>
+					</table:Column>			
 					
 				<table:Column width="11rem">
 						<Label text="Transport Request"/>
@@ -124,21 +124,7 @@
 						<table:template>
 							<Text id = "id12" text="{Comments}"/>
 						</table:template>
-					</table:Column>
-					
-				<table:Column width="11rem">
-						<Label text="Deletion indicator"/>
-						<table:template>
-							<Text id = "id13" text="{Delflg}"/>
-						</table:template>
-					</table:Column>
-					
-				<table:Column width="11rem">
-						<Label text="Created By"/>
-						<table:template>
-							<Text id = "id14" text="{Ernam}"/>
-						</table:template>
-					</table:Column>
+					</table:Column>								
 					
 					<!--<table:Column width="11rem" hAlign="Center">-->
 					<!--	<Label text="Created On"/>-->
@@ -167,12 +153,6 @@
 				<!--		</table:template>-->
 				<!--	</table:Column>-->
 					
-				<table:Column width="11rem">
-						<Label text="Changed by"/>
-						<table:template>
-							<Text id = "id16" text="{Chnam}"/>
-						</table:template>
-					</table:Column>
 
 				<!--<table:Column width="11rem">-->
 				<!--		<Label text="Changed date" />-->
