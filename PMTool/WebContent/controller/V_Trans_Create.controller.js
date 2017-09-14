@@ -27,7 +27,7 @@ sap.ui.define([
 		        oView.byId("idPreviousRequest").setValue("");
 		        oView.byId("vdev").setValue("");
 		         oView.byId("idOwner").setValue("");
-			oView.byId("idComments").setValue("");
+		         oView.byId("idComments").setValue("");
 				}
 
 	}, oView);	

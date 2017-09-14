@@ -338,16 +338,45 @@ sap.ui.define([
 			
 			oEntry.Objnr = Objnr_Edit;
 			oEntry.TranList = oView.byId("inTranList").getValue();
-			oEntry.Team = oView.byId("vTeam").getValue();
-			oEntry.Project = oView.byId("vchangeProjectId").getValue();
+			
+			var oTeam = oView.byId("vTeam").getSelectedItem();
+        	if( oTeam === null ){ 
+   			oEntry.Team = oView.byId("vTeam").getValue();
+        	}
+        	else
+        	{
+		 	var oKeyteam = oTeam.getKey();
+			oEntry.Team = oKeyteam;
+        	}
+			
+			var oZprojId1 = this.getView().byId("vchangeProjectId").getSelectedItem();
+        	if( oZprojId1 === null ){ 
+       		oEntry.Project = oView.byId("vchangeProjectId").getValue();
+            }
+            else
+            {
+		 	var oKey = oZprojId1.getKey();
+			oEntry.Project = oKey;										
+            }
+        	
 			oEntry.Ticket = oView.byId("inTicket").getValue();
 			oEntry.Folder = oView.byId("inFolder").getValue();
 			oEntry.Seqnr = oView.byId("inSeqnr").getValue();
 			oEntry.Land1 = oView.byId("inLand1").getValue();
 			oEntry.Trkorr = oView.byId("inTrkorr").getValue();
-			oEntry.TrkorrPrev = oView.byId("inTrkorrPrev").getValue();
+			oEntry.TrkorrPrev = oView.byId("inTrkorrPrev").getValue();			 			
 			oEntry.Devtype = oView.byId("vdev").getValue();
-			oEntry.As4user = oView.byId("inAs4user").getValue();
+			
+			var oAs4user = this.getView().byId("inAs4user").getSelectedItem();
+        	if( oAs4user === null ){ 
+       		oEntry.As4user = oView.byId("inAs4user").getValue();
+            }
+            else
+            {
+		 	var oKeyuser = oAs4user.getKey();
+			oEntry.As4user = oKeyuser;										
+            }
+			
 			oEntry.Comments = oView.byId("inComments").getValue();
 			// oEntry.Delflg = oView.byId("inDelflg").getValue();
 			oEntry.Ernam = Ernam_Edit;
@@ -448,8 +477,29 @@ sap.ui.define([
 			
 			oEntry.Objnr = "9999999999";
 			oEntry.TranList = oView.byId("cpTranList").getValue();
-			oEntry.Team = oView.byId("cpTeam").getValue();
-			oEntry.Project = oView.byId("cpProject").getValue();
+			
+			var oTeam = oView.byId("cpTeam").getSelectedItem();
+        	if( oTeam === null ){ 
+   			oEntry.Team = oView.byId("cpTeam").getValue();
+        	}
+        	else
+        	{
+		 	var oKeyteam = oTeam.getKey();
+			oEntry.Team = oKeyteam;
+        	}
+			
+			var oZprojId1 = this.getView().byId("cpProject").getSelectedItem();
+        	if( oZprojId1 === null ){ 
+       		oEntry.Project = oView.byId("cpProject").getValue();
+            }
+            else
+            {
+		 	var oKey = oZprojId1.getKey();
+			oEntry.Project = oKey;										
+            }		
+			
+	//		oEntry.Team = oView.byId("cpTeam").getValue();			
+		//	oEntry.Project = oView.byId("cpProject").getValue();
 			oEntry.Ticket = oView.byId("cpTicket").getValue();
 			oEntry.Folder = oView.byId("cpFolder").getValue();
 			oEntry.Seqnr = oView.byId("cpSeqnr").getValue();
@@ -457,7 +507,18 @@ sap.ui.define([
 			oEntry.Trkorr = oView.byId("cpTrkorr").getValue();
 			oEntry.TrkorrPrev = oView.byId("cpTrkorrPrev").getValue();
 			oEntry.Devtype = oView.byId("cpDevtype").getValue();
-			oEntry.As4user = oView.byId("cpAs4user").getValue();
+			
+			var oAs4user = this.getView().byId("cpAs4user").getSelectedItem();
+        	if( oAs4user === null ){ 
+       		oEntry.As4user = oView.byId("cpAs4user").getValue();
+            }
+            else
+            {
+		 	var oKeyuser = oAs4user.getKey();
+			oEntry.As4user = oKeyuser;										
+            }
+			
+//			oEntry.As4user = oView.byId("cpAs4user").getValue();
 			oEntry.Comments = oView.byId("cpComments").getValue();
 			// oEntry.Delflg = oView.byId("inDelflg").getValue();
 			// oEntry.Ernam = Ernam_Edit;
