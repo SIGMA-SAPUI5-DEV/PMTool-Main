@@ -5,26 +5,56 @@
 				<content>
 				    <sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true" layout="ResponsiveGridLayout" id="__form0" maxContainerCols="2" width="auto">
 				    	<sap.ui.layout.form:content>
+<<<<<<< HEAD
 				        	<Label text="Team"/>
 				        	<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" width="25%" id="idTeam" type="Number" valueHelpRequest="fTransTeamF4" showTableSuggestionValueHelp="false"/>
 				            <Label text="Project"/>
 				            <Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" width="10%" id="idProject"/>
 				            <Label text="Ticket Number"/>
+=======
+				        	<Label text="Team" required="true"/>
+				        	<!--<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" width="25%" id="idTeam" type="Number" valueHelpRequest="fTransTeamF4" showTableSuggestionValueHelp="false"/>-->
+				           	<Select id="vTeam" width="5cm" showSecondaryValues="true" items="{path: 'jData>/team/'}">
+                                <core:Item key="{jData>key}" text="{jData>text}"/>
+                           </Select>
+				            <Label text="Project" required="true"/>
+				            <!--<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" width="10%" id="idProject"/>-->
+								<!--<Select id="idProject"-->
+								<!--	items="{-->
+								<!--		path: '/ProjMasterSet',-->
+								<!--		sorter: { path: 'ZprojId' }-->
+								<!--	}">-->
+								<!--	<core:Item key="{ZprojId}" text="{ZprDesc}" />-->
+								<!--</Select>				            -->
+								<Select id="vcreateProjectId" width="7cm" showSecondaryValues="true" items="{ path: '/ProjMasterSet'}">
+                                 <core:Item key="{ZprojId}" text="{ZprDesc}"/>
+                                 </Select>
+				            <Label text="Country" required="true"/>
+				        	<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" width="10%" id="idCountry"/>
+				            <Label text="Ticket Number" required="true"/>
+>>>>>>> 3ba1ac27932b604d2c1a4ad30643cb113ab22578
 				            <Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" width="40%" id="idTicketNumber"/>
 				            <Label text="Specification Name"/>
 				        	<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" width="60%" id="idSpecificationName"/>
-				        	<Label text="Sequence Number"/>
-				        	<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" width="10%" id="idSequenceNumber"/>
-				        	<Label text="Country"/>
-				        	<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" width="10%" id="idCountry"/>
-				        	<Label text="Transport Request"/>
+				        	<Label text="Sequence Number" required="true"/>
+				        	<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" width="10%" id="idSequenceNumber"/>				        	
+				        	<Label text="Transport Request" required="true"/>
 				        	<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" width="40%" id="idTransportRequest"/>
 				        	<Label text="Previous Request"/>
 				        	<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" width="40%" id="idPreviousRequest"/>
 				        	<Label text="Development Type"/>
 				        	<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" width="20%" id="idDevelopmentType" maxLength="10"/>
 				        	<Label text="Owner"/>
+<<<<<<< HEAD
 				        	<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" width="12%" id="idOwner"/>
+=======
+				        	<!--<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" width="12%" id="idOwner"/>-->
+				        	<Select id="idOwner" width="7cm" showSecondaryValues="true" items="{ path: '/DevMasterSet'}">
+                                 <core:Item key="{Zdeveloper}" text="{ZdeveloperName}"/>
+                                 </Select>
+	                        <Label text="Comments"/>
+				        	<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" width="100%" id="idComments"/>
+>>>>>>> 3ba1ac27932b604d2c1a4ad30643cb113ab22578
 				        </sap.ui.layout.form:content> 
 				    </sap.ui.layout.form:SimpleForm>
 				</content>

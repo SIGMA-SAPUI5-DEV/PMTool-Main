@@ -56,6 +56,13 @@
 						</table:template>
 					</table:Column>					
 					
+					<table:Column width="11rem">
+						<Label text="Country"/>
+						<table:template>
+							<Text id = "id7" text="{Land1}"/>
+						</table:template>
+					</table:Column>					
+					
 				<table:Column width="20rem">
 						<Label text="Ticket Number"/>
 						<table:template>
@@ -75,14 +82,8 @@
 						<table:template>
 							<Input value="{Seqnr}" editable="false"/>
 						</table:template>
-					</table:Column>
 
-				<table:Column width="11rem">
-						<Label text="Country"/>
-						<table:template>
-							<Input value="{Land1}" editable="false"/>
-						</table:template>
-					</table:Column>
+
 					
 				<table:Column width="11rem">
 						<Label text="Transport Request"/>
@@ -117,21 +118,9 @@
 						<table:template>
 							<Input value="{Comments}" editable="false"/>
 						</table:template>
-					</table:Column>
-					
-				<table:Column width="11rem">
-						<Label text="Deletion indicator"/>
-						<table:template>
-							<Input value="{Delflg}" editable="false"/>
-						</table:template>
-					</table:Column>
-					
-				<table:Column width="11rem">
-						<Label text="Created By"/>
-						<table:template>
-							<Input value="{Ernam}" editable="false"/>
-						</table:template>
-					</table:Column>
+
+					</table:Column>								
+
 					
 					<!--<table:Column width="11rem" hAlign="Center">-->
 					<!--	<Label text="Created On"/>-->
@@ -161,12 +150,8 @@
 				<!--		</table:template>-->
 				<!--	</table:Column>-->
 					
-				<!--<table:Column width="11rem">-->
-				<!--		<Label text="Changed by"/>-->
-				<!--		<table:template>-->
-				<!--			<Input value="{Chnam}" editable="false"/>-->
-				<!--		</table:template>-->
-				<!--	</table:Column>-->
+
+
 
 				<!--<table:Column width="11rem">-->
 				<!--		<Label text="Changed date" />-->
